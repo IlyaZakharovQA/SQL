@@ -9,21 +9,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLHelper {
-    private static QueryRunner runner =new QueryRunner();
+    private static QueryRunner runner = new QueryRunner();
 
-    private SQLHelper(){
+    private SQLHelper() {
     }
 
-    private static Connection getConn() throws SQLException{
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app","app","pass");
+    private static Connection getConn() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
 
-    public static DataHelper.VerificationCode getVerificationCode(){
+    public static DataHelper.VerificationCode getVerificationCode() {
         var codeSQL = "SELECT code FROM auth_codes ORDER BY created DESC LIMIT 1";
-        try (var conn = getConn()){
+        try (var conn = getConn()) {
             var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
             return new DataHelper.VerificationCode(code);
-        } catch (SQLException exception){
+        } catch (SQLException exception) {
             exception.printStackTrace();
         }
         return null;

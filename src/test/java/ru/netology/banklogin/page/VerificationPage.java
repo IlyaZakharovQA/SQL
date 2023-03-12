@@ -17,11 +17,11 @@ public class VerificationPage {
     @FindBy(css = "[data-test-id='error-notification']")
     private SelenideElement errorNotification;
 
-    public void verifyVerificationPageVisiblity() {
+    public void verifyVerificationPageVisibility() {
         codeField.shouldBe(visible);
     }
 
-    public void verifyErrorNotificationVisiblity() {
+    public void verifyErrorNotificationVisibility() {
         errorNotification.shouldBe(visible);
     }
 
